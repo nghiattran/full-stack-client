@@ -1,0 +1,41 @@
+<div class="auth-box">
+  <div class="auth-inner-box">
+    <h3>Sign in</h3>
+    <div class='row' id="login-button-group">
+      <a class="btn btn-social btn-google btn-block">
+        <span class="fa fa-google"></span> Sign in with Twitter
+      </a>
+      <a class="btn btn-social btn-facebook btn-block">
+        <span class="fa fa-facebook"></span> Sign in with Facebook
+      </a>
+      <a class="btn btn-social btn-github btn-block">
+        <span class="fa fa-github"></span> Sign in with Github
+      </a>
+    </div>
+
+    <h5>Or</h5>
+
+    <div class='row'>
+      <form role="form" method="post" ng-submit="auth.signin(tmpUser)">
+        <div class="form-group">
+          <div class="box-sm">
+            <input ng-model="tmpUser.username" type="text" class="form-control" placeholder="Username" autofocus="true" required>
+          </div>
+
+          <div class="box-sm">
+            <input type="password" class="form-control" placeholder="Password" ng-model="tmpUser.password" required>
+          </div>
+        </div>
+          
+        <div class="login-button">
+          <a ui-sref="reset-password" class="btn pull-right">forgot password?</a>
+          <button type="submit" class="btn btn-lg btn-primary pull-right">Sign in</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="box">
+    <p>Need an account? <a ui-sref="signup">Sign up</a>.</p>
+  </div>
+</div>
