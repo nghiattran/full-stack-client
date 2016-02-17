@@ -1,25 +1,34 @@
-export function NavbarDirective() {
+export function NavbarDirective($rootScope) {
   'ngInject';
 
   let directive = {
     restrict: 'E',
     templateUrl: 'app/components/navbar/navbar.html',
     scope: {
-        creationDate: '='
+      creationDate: '='
     },
     controller: NavbarController,
     controllerAs: 'vm',
-    bindToController: true
+    bindToController: false
   };
 
   return directive;
 }
 
 class NavbarController {
-  constructor (moment) {
+  constructor ($rootScope, $state, moment, request) {
     'ngInject';
 
-    // "this.creation" is available by directive option "bindToController: true"
     this.relativeDate = moment(this.creationDate).fromNow();
+    // this.user = $rootScope.user;
+    this.$rootScope = $rootScope;
+    this.API = request;
+    this.$state = $state;
+  }
+
+  logout()
+  {
+    this.API.logout();
+    this.$state.go('home');
   }
 }

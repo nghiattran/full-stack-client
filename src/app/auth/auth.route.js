@@ -13,11 +13,5 @@ export function authRouterConfig ($stateProvider) {
       templateUrl: 'app/auth/signup.html',
       controller: 'AuthController',
       controllerAs: 'auth'
-    })
-    .state('reset-password', {
-      url: '/reset-password',
-      templateUrl: 'app/auth/reset-password.html',
-      controller: 'AuthController',
-      controllerAs: 'auth'
     });
 }

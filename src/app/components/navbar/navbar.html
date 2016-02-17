@@ -6,11 +6,18 @@
       </a>
     </div>
 
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-6">
+    <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
         <li class="active"><a ng-href="#">Home</a></li>
         <li><a ng-href="#">About</a></li>
         <li><a ng-href="#">Contact</a></li>
+      </ul>
+
+      <ul class="nav navbar-nav pull-right">
+        <li><a ui-sref="signin" ng-if="!vm.$rootScope.user">Sign In</a></li>
+        <li><a ui-sref="signup" ng-if="!vm.$rootScope.user">Signup</a></li>
+        <li><a ui-sref="auth.logout" ng-if="vm.$rootScope.user">Hi, {{ vm.$rootScope.user.username }}</a></li>
+        <li><a ng-click="vm.logout()" href="" ng-if="vm.$rootScope.user">Logout</a></li>
       </ul>
     </div>
   </div>
