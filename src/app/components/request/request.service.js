@@ -82,14 +82,14 @@ export class requestService {
       });
   }
 
-  logout(token) {
-    this.$cookies.remove(token || 'token');
-    this.setUser(token);
+  logout(tokenField) {
+    this.$cookies.remove(tokenField || 'token');
+    this.setUser(tokenField);
   }
 
-  getToken(token)
+  getToken(tokenField)
   {
-    var token = this.$cookies.get(token || 'token');
+    var token = this.$cookies.get(tokenField || 'token');
     if (token == undefined) {
       return undefined;
     } else {
@@ -101,13 +101,13 @@ export class requestService {
     }
   }
 
-  setUser(token)
+  setUser(tokenField)
   {
-    this.$rootScope.user = this.getToken(token);
+    this.$rootScope.user = this.getToken(tokenField);
   }
 
-  getUser(token)
+  getUser(tokenField)
   {
-    return this.getToken(token);
+    return this.getToken(tokenField);
   }
 }

@@ -1,23 +1,35 @@
 <nav class="navbar navbar-static-top navbar-inverse">
-  <div class="container-fluid">
+  <div class="container">
     <div class="navbar-header">
+      <button type="button" class="navbar-toggle" ng-init="navCollapsed = true" ng-click="navCollapsed = !navCollapsed">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
       <a class="navbar-brand" href="https://github.com/Swiip/generator-gulp-angular">
         <span class="glyphicon glyphicon-home"></span> Gulp Angular
       </a>
     </div>
 
-    <div class="collapse navbar-collapse">
+    <div class="collapse navbar-collapse" ng-class="!navCollapsed && 'in'">
       <ul class="nav navbar-nav">
-        <li class="active"><a ng-href="#">Home</a></li>
-        <li><a ng-href="#">About</a></li>
-        <li><a ng-href="#">Contact</a></li>
+        <li class="active"><a ui-sref="home">Home</a></li>
       </ul>
 
-      <ul class="nav navbar-nav pull-right">
+      <ul class="nav navbar-nav navbar-right">
         <li><a ui-sref="signin" ng-if="!vm.$rootScope.user">Sign In</a></li>
         <li><a ui-sref="signup" ng-if="!vm.$rootScope.user">Signup</a></li>
-        <li><a ui-sref="auth.logout" ng-if="vm.$rootScope.user">Hi, {{ vm.$rootScope.user.username }}</a></li>
-        <li><a ng-click="vm.logout()" href="" ng-if="vm.$rootScope.user">Logout</a></li>
+        <li uib-dropdown is-open="status.isopen">
+          <a href="#" uib-dropdown-toggle ng-disabled="disabled" ng-if="vm.$rootScope.user">
+            Hi, {{ vm.$rootScope.user.username }}<span class="caret"></span>
+          </a>
+          <ul uib-dropdown-menu role="menu" aria-labelledby="single-button">
+            <li role="menuitem"><a ui-sref="setting">Setting</a></li>
+            <li class="divider"></li>
+            <li><a ng-click="vm.logout()" href="" ng-if="vm.$rootScope.user">Logout</a></li>
+          </ul>
+        </li>
       </ul>
     </div>
   </div>

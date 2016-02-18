@@ -1,4 +1,4 @@
-export function NavbarDirective($rootScope) {
+export function NavbarDirective() {
   'ngInject';
 
   let directive = {

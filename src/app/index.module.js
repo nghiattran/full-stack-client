@@ -8,6 +8,7 @@ import { runBlock } from './index.run';
 import { MainController } from './main/main.controller';
 import { AuthController } from './auth/auth.controller';
 import { UserController } from './user/user.controller';
+import { ModalController } from '../app/components/modal/modal.controller';
 import { requestService } from '../app/components/request/request.service';
 import { GithubContributorService } from '../app/components/githubContributor/githubContributor.service';
 import { WebDevTecService } from '../app/components/webDevTec/webDevTec.service';
@@ -25,7 +26,9 @@ angular.module('gulpAngular', [
   'ngResource', 
   'ui.router', 
   'toastr', 
-  'angular-jwt'])
+  'angular-jwt',
+  'ui.bootstrap'])
+
   .constant('malarkey', malarkey)
   .constant('moment', moment)
   .config(config)
@@ -37,7 +40,8 @@ angular.module('gulpAngular', [
   .service('githubContributor', GithubContributorService)
   .service('webDevTec', WebDevTecService)
   .controller('MainController', MainController)
-  .controller('AuthController', AuthController)
+  // .controller('AuthController', AuthController)
   .controller('UserController', UserController)
+  .controller('ModalController', ModalController)
   .directive('acmeNavbar', NavbarDirective)
   .directive('acmeMalarkey', MalarkeyDirective);

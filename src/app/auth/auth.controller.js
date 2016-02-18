@@ -1,9 +1,9 @@
 'use strict';
 
 export class AuthController {
-  constructor (request, $cookies, $log, $state, $scope, $rootScope) {
+  constructor (request, $cookies, $log, $state) {
     'ngInject';
-    this.API = request;
+    this.request = request;
     this.$state = $state;
     this.$cookies = $cookies;
     this.$log = $log;
@@ -11,9 +11,10 @@ export class AuthController {
 
   signup(user) {
     var self = this;
-    this.API.signup(user)
+    this.request.signup(user)
       .then(function (res) {
         self.$state.go('home');
+        return res;
       })
       .catch(function (err) {
         return err;
@@ -22,9 +23,10 @@ export class AuthController {
 
   signin(user) {
     var self = this;
-    this.API.signin(user)
+    this.request.signin(user)
       .then(function (res) {
         self.$state.go('home');
+        return res;
       })
       .catch(function (err) {
         return err;
@@ -33,9 +35,10 @@ export class AuthController {
 
   requestReset(user) {
     var self = this;
-    this.API.requestReset(user)
+    this.request.requestReset(user)
       .then(function (res) {
         self.$state.go('home');
+        return res;
       })
       .catch(function (err) {
         return err;
@@ -43,8 +46,7 @@ export class AuthController {
   }
 
   logout() {
-    console.log('here')
-    this.API.logout();
+    this.request.logout();
     this.$state.go('home');
   }
 }
