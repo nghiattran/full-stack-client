@@ -34,6 +34,14 @@ export class requestService {
     return this.$http.post(this.setUrl(endpoint), payload, config)
   }
 
+  put(endpoint, payload)
+  {
+    var config ={
+      headers: {Authorization: this.$cookies.get('token')}
+    }
+    return this.$http.put(this.setUrl(endpoint), payload, config)
+  }
+
   signup(user) {
     var that = this;
     return this.post("api/user", user)
@@ -83,14 +91,23 @@ export class requestService {
   {
     var token = this.$cookies.get(token || 'token');
     if (token == undefined) {
-      return token
+      return undefined;
     } else {
-      return this.jwtHelper.decodeToken(token);
+      try{
+        return this.jwtHelper.decodeToken(token)
+      }catch(err) {
+        return undefined;
+      }
     }
   }
 
   setUser(token)
   {
     this.$rootScope.user = this.getToken(token);
+  }
+
+  getUser(token)
+  {
+    return this.getToken(token);
   }
 }

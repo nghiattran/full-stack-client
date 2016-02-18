@@ -9,17 +9,26 @@ export class UserController {
     this.$log = $log;
     this.jwtHelper = jwtHelper;
     this.$rootScope = $rootScope;
-
-    // console.log(request.getToken())
-    request.setUser();
-    console.log($rootScope.user.username)
   }
 
   requestReset(user) {
-    var that = this;
+    var self = this;
     this.API.requestReset(user)
       .then(function (res) {
-        that.$state.go('home');
+        self.$state.go('home');
+      })
+      .catch(function (err) {
+        return err;
+      });
+  }
+
+  updateUser(user) {
+    var self = this;
+    var url = 'api/user/'+self.$rootScope.user._id+'/setting';
+    console.log(url);
+    this.API.put(url,user)
+      .then(function (res) {
+        self.$state.go('home');
       })
       .catch(function (err) {
         return err;

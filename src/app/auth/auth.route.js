@@ -6,12 +6,14 @@ export function authRouterConfig ($stateProvider) {
       url: '/signin',
       templateUrl: 'app/auth/signin.html',
       controller: 'AuthController',
-      controllerAs: 'auth'
+      controllerAs: 'auth',
+      authenticate: false
     })
     .state('signup', {
       url: '/signup',
       templateUrl: 'app/auth/signup.html',
       controller: 'AuthController',
-      controllerAs: 'auth'
+      controllerAs: 'auth',
+      authenticate: false
     });
 }

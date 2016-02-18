@@ -10,10 +10,10 @@ export class AuthController {
   }
 
   signup(user) {
-    var that = this;
+    var self = this;
     this.API.signup(user)
       .then(function (res) {
-        that.$state.go('home');
+        self.$state.go('home');
       })
       .catch(function (err) {
         return err;
@@ -21,10 +21,10 @@ export class AuthController {
   }
 
   signin(user) {
-    var that = this;
+    var self = this;
     this.API.signin(user)
       .then(function (res) {
-        that.$state.go('home');
+        self.$state.go('home');
       })
       .catch(function (err) {
         return err;
@@ -32,10 +32,10 @@ export class AuthController {
   }
 
   requestReset(user) {
-    var that = this;
+    var self = this;
     this.API.requestReset(user)
       .then(function (res) {
-        that.$state.go('home');
+        self.$state.go('home');
       })
       .catch(function (err) {
         return err;
