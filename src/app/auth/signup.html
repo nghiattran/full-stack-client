@@ -1,14 +1,17 @@
-<div class="auth-box">
+<div class="auth-box" ng-init="auth.startApp()">
   <div class="auth-inner-box">
+
     <h3>Sign up</h3>
+
     <div class='row' id="login-button-group">
-      <a class="btn btn-social btn-google btn-block">
-        <span class="fa fa-google"></span> Sign up with Twitter
+      <a id="google-auth-btn" class="btn btn-social btn-google btn-block" data-onsuccess="onSignIn" data-theme="dark">
+        <span class="fa fa-google"></span> Sign up with Google
       </a>
       <a class="btn btn-social btn-facebook btn-block">
         <span class="fa fa-facebook"></span> Sign up with Facebook
       </a>
-      <a class="btn btn-social btn-github btn-block">
+      <a class="btn btn-social btn-github btn-block" href="http://localhost:9000/auth/google">
+        <!-- href="https://github.com/login/oauth/authorize?scope=user:email&client_id=daa2dd683f3491129d06" -->
         <span class="fa fa-github"></span> Sign up with Github
       </a>
     </div>
@@ -30,7 +33,7 @@
             <input type="email" class="form-control" placeholder="Email" ng-model="tmpUser.email" required>
           </div>
         </div>
-          
+
         <div class="login-button">
           <a ui-sref="forgot-password" class="btn pull-right">forgot password?</a>
           <button type="submit" class="btn btn-lg btn-primary pull-right">Sign up</button>

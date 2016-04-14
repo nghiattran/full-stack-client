@@ -40,7 +40,7 @@ angular.module('gulpAngular', [
   .service('githubContributor', GithubContributorService)
   .service('webDevTec', WebDevTecService)
   .controller('MainController', MainController)
-  // .controller('AuthController', AuthController)
+  .controller('AuthController', AuthController)
   .controller('UserController', UserController)
   .controller('ModalController', ModalController)
   .directive('acmeNavbar', NavbarDirective)
