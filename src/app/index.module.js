@@ -4,10 +4,13 @@ import { config } from './index.config';
 import { routerConfig } from './index.route';
 import { authRouterConfig } from './auth/auth.route';
 import { userRouterConfig } from './user/user.route';
+import { groupRouterConfig } from './group/group.route';
+import { profileRouterConfig } from './profile/profile.route';
 import { runBlock } from './index.run';
 import { MainController } from './main/main.controller';
 import { AuthController } from './auth/auth.controller';
 import { UserController } from './user/user.controller';
+import { GroupController } from './group/group.controller';
 import { ModalController } from '../app/components/modal/modal.controller';
 import { requestService } from '../app/components/request/request.service';
 import { GithubContributorService } from '../app/components/githubContributor/githubContributor.service';
@@ -35,6 +38,8 @@ angular.module('gulpAngular', [
   .config(routerConfig)
   .config(authRouterConfig)
   .config(userRouterConfig)
+  .config(groupRouterConfig)
+  .config(profileRouterConfig)
   .run(runBlock)
   .service('request', requestService)
   .service('githubContributor', GithubContributorService)
@@ -42,6 +47,7 @@ angular.module('gulpAngular', [
   .controller('MainController', MainController)
   .controller('AuthController', AuthController)
   .controller('UserController', UserController)
+  .controller('GroupController', GroupController)
   .controller('ModalController', ModalController)
   .directive('acmeNavbar', NavbarDirective)
   .directive('acmeMalarkey', MalarkeyDirective);

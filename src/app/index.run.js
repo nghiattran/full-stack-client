@@ -3,7 +3,7 @@ export function runBlock ($log, request, $state, $rootScope) {
   $log.debug('runBlock end');
 
   if (!$rootScope.user) {
-    request.setUser();
+    request.getUser();
   }
 
   $rootScope.$on("$stateChangeStart",

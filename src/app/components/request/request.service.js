@@ -23,19 +23,20 @@ export class requestService {
       },
       params: params
     }
-    return this.$http(req);
+    return this.$http(req)
+            .then(function (res) {
+              return res.data;
+            });
   }
-
-  post(endpoint, payload)
-  {
+  
+  post(endpoint, payload) {
     var config ={
       headers: {Authorization: this.$cookies.get('token') || null}
     }
     return this.$http.post(this.setUrl(endpoint), payload, config)
   }
 
-  put(endpoint, payload)
-  {
+  put(endpoint, payload) {
     var config ={
       headers: {Authorization: this.$cookies.get('token')}
     }
@@ -47,8 +48,7 @@ export class requestService {
     return this.post("api/user", user)
       .then(function (res) {
         if (!('error' in res.data)) {
-          that.$cookies.put('token', res.data.token); 
-          that.setUser();
+          that.getUser();
         }
         return res.data;
       })
@@ -62,8 +62,7 @@ export class requestService {
     return this.post("auth/local", user)
       .then(function (res) {
         if (!('error' in res.data)) {
-          that.$cookies.put('token', res.data.token);
-          that.setUser();
+          that.getUser();
         }
         return res.data;
       })
@@ -82,32 +81,35 @@ export class requestService {
       });
   }
 
-  logout(tokenField) {
-    this.$cookies.remove(tokenField || 'token');
-    this.setUser(tokenField);
+  logout() {
+    this.$cookies.remove('token');
+    console.log(this.$rootScope.user);
+    if (this.$rootScope.user && this.$rootScope.user.provider === 'google') {
+      googleSignOut();
+    };
+    this.$rootScope.user = null;
   }
 
-  getToken(tokenField)
-  {
-    var token = this.$cookies.get(tokenField || 'token');
-    if (token == undefined) {
-      return undefined;
-    } else {
-      try{
-        return this.jwtHelper.decodeToken(token)
-      }catch(err) {
-        return undefined;
-      }
-    }
+  getUser() {
+    var self = this;
+    if (!this.$cookies.get('token')) {
+      return ;
+    };
+
+    this.get('api/user/me')
+      .then(function (res) {
+        self.$rootScope.user = res.results;
+      })
+      .catch(function (err) {
+        console.log(err);
+        self.logout();
+      })
   }
 
-  setUser(tokenField)
-  {
-    this.$rootScope.user = this.getToken(tokenField);
-  }
+}
 
-  getUser(tokenField)
-  {
-    return this.getToken(tokenField);
-  }
+
+function googleSignOut() {
+  console.log('here');
+  gapi.auth.signOut();
 }

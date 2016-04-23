@@ -8,6 +8,7 @@
     <meta name="google-signin-scope" content="profile email">
     <meta name="google-signin-client_id" content="46924371642-1to9hh7tsvves6srmmmalrs8mcdrf1de.apps.googleusercontent.com">
     <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <!-- <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css"> -->
@@ -29,15 +30,15 @@
     <!--[if lt IE 10]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-
     <div>
-        <acme-navbar creation-date="main.creationDate"></acme-navbar>
+        <div class="header">
+            <acme-navbar creation-date="main.creationDate"></acme-navbar>
+        </div>
+        
+        <div>
+            <div ui-view></div>
+        </div>
     </div>
-    
-    <div class="container">
-        <div ui-view></div>
-    </div>
-
 
     <!-- build:js(src) scripts/vendor.js -->
     <!-- bower:js -->
