@@ -1,0 +1,14 @@
+<form id="group-avatar-form" method="post" enctype="multipart/form-data" class="form-horizontal" ng-submit="group.invite(group.tmpInviteForm)" ng-init="group.tmpInviteForm = {}">
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="textinput">Invite</label>  
+    <div class="col-md-4">
+      <input id="textinput" name="textinput" type="text" class="form-control input-md" ng-model="group.tmpInviteForm.user">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-md-4 control-label"></label>
+    <div class="col-md-4">
+      <input class="form-group btn btn-primary" type="submit" value="Submit">
+    </div>
+  </div>
+</form>

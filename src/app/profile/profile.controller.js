@@ -43,7 +43,7 @@ export class ProfileController {
       })
       .then(function (groups) {
         self.tmpUser.groups = groups.results;
-        self.getGroupImage(groups.results)
+        self.getGroupImages(groups.results)
         console.log(groups.results);
         return self.request.get('api/package/' + username);
       })
@@ -53,16 +53,20 @@ export class ProfileController {
       })
   }
 
-  getGroupImage(groups) {
+  getGroupImages(groups) {
     for (var i = 0; i < groups.length; i++) {
-      this.$http.get('http://acadweb1.salisbury.edu/~NT9736/getImage.php?table=Groups&column=name&id=' + groups[0].groupName)
-        .then(function (res) {
-          if (res.data) {
-            groups[0].image = "data:image/png;base64, " + res.data;
-          } else {
-            groups[0].image = 'http://www.gravatar.com/avatar/205e460b479e2e5b48aes07710c0ad50?d=mm';
-          }
-        })
+      this.getGroupImage(groups[i]);
     };
+  }
+
+  getGroupImage(group) {
+    this.$http.get('http://acadweb1.salisbury.edu/~NT9736/getImage.php?table=Groups&column=name&id=' + group.groupName)
+      .then(function (res) {
+        if (res.data) {
+          group.image = "data:image/png;base64, " + res.data;
+        } else {
+          group.image = 'https://avatars3.githubusercontent.com/u/15514893?v=3&s=200';
+        }
+      })
   }
 }

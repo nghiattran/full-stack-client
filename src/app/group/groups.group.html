@@ -27,6 +27,10 @@
         <i class="fa fa-wrench" aria-hidden="true"></i>
         <a ui-sref="groups.group.setting">Settings</a>
       </div>
+      <div class="atab" ui-sref-active-eq="atab-active" ng-if="group.tmpGroup.createdBy === group.$rootScope.user.name">
+        <i class="fa fa-sign-language" aria-hidden="true"></i>
+        <a ui-sref="groups.group.invite">Invite</a>
+      </div>
     </div>
 
     <div class="group-content">
@@ -40,7 +44,7 @@
 
           <div class="group-members" ng-repeat="member in group.tmpGroup.members">
             <div class="group-members-avatar">
-              <img src="https://avatars2.githubusercontent.com/u/13736109?v=3&s=80">
+              <img ng-src="{{member.image}}">
             </div>
             <div class="group-members-info">
               <a ui-sref="profile({username:member.name})">{{member.name}}</a>

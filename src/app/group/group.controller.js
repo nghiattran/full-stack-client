@@ -60,6 +60,7 @@ export class GroupController {
       .then(function (res) {
         self.tmpGroup = res.results;
         console.log(self.tmpGroup);
+        self.getMemberImages(res.results.members);
         self.getAvatar(res.results.groupName);
         self.setPostUrl();
         return self.request.get('api/package/' + name)
@@ -68,18 +69,39 @@ export class GroupController {
         self.tmpGroup.pkgs = res.results;
       })
       .catch(function (err) {
-        self.$state.go('profile.me');
+        // self.$state.go('profile', {name:});
         return err;
       });
   }
 
-  // getGroupImage() {
+  getMemberImages(members) {
+    for (var i = 0; i < members.length; i++) {
+      this.getMemberImage(members[i]);
+    };
+  }
 
-  //   var url = 'http://acadweb1.salisbury.edu/~NT9736/getImage.php?id={{id}}&table=Groups&column={{table_name}}';
+  getMemberImage(member) {
+    this.$http.get('http://acadweb1.salisbury.edu/~NT9736/getImage.php?table=Users&column=name&id=' + member.name)
+      .then(function (res) {
+        if (res.data) {
+          member.image = "data:image/png;base64, " + res.data;
+        } else {
+          member.image = 'http://www.gravatar.com/avatar/205e460b479e2e5b48aes07710c0ad50?d=mm';
+        }
+      })
+  }
 
-  //   this.$http.get()
-  //     .then(function (res) {
-  //       document.getElementById("ItemPreview").src = "data:image/png;base64, " + res.data;
-  //     })
-  // }
+  invite(form) {
+    form.group = this.tmpGroup.groupName;
+    var self = this;
+    this.request.post('api/group/invite', form)
+      .then(function (res) {
+        form = undefined;
+        self.getGroup();
+      })
+      .catch(function (err) {
+        self.getGroup();
+        return err;
+      });
+  }
 }

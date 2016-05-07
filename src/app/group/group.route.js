@@ -26,4 +26,8 @@ export function groupRouterConfig ($stateProvider) {
       url: '/setting',
       templateUrl: 'app/group/groups.group.setting.html'
     })
+    .state('groups.group.invite', {
+      url: '/invite',
+      templateUrl: 'app/group/groups.group.invite.html'
+    })
 }

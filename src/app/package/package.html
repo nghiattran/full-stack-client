@@ -1,11 +1,11 @@
-<div class="container container-content">
+<div class="container container-content" ng-init="getUser()">
   <div class="col-xs-3">
     <div class="profile-image">
-      <img src="https://avatars2.githubusercontent.com/u/13736109?v=3" align="middle">
+      <img ng-src="{{package.tmpUser.image}}" align="middle">
     </div>
     <div>
       <h4>
-        <a ng-if="package.tmpUser.type === 1" ui-sref="groups.group.packages({groupName: 'calolo'})">{{package.tmpUser.name}}</a>
+        <a ng-if="package.tmpUser.type === 1" ui-sref="groups.group.packages({groupName: package.tmpUser.name})">{{package.tmpUser.name}}</a>
         <a ng-if="package.tmpUser.type === 0" ui-sref="profile({username: package.tmpUser.name})">{{package.tmpUser.name}}</a>
         /<a href="">{{package.pkgName}}</a></h4>
 
@@ -17,7 +17,7 @@
       </div>
     </div>
   </div>
-
+  
   <div class="col-md-9">
     <div ng-init="package.tmpPgk ={}" btf-markdown="package.tmpPgk.markdown">
     </div>
