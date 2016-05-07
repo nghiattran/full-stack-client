@@ -51,6 +51,7 @@ export class PackageController {
         self.tmpUser = res.results;
         self.tmpUser.type = 0;
         self.getAvatar(self.tmpUser);
+        self.getVersions();
       })
       .catch(function (res) {
         return self.request.get('api/group/' + self.username)
@@ -70,6 +71,15 @@ export class PackageController {
         } else {
           user.image = 'https://avatars3.githubusercontent.com/u/15514893?v=3&s=200';
         }
+      })
+  }
+
+  getVersions() {
+    var self = this;
+    this.request.get('api/package/' + this.$state.params.username + '/' + this.pkgName)
+      .then(function (res) {
+        self.tmpPgk.versions = res.results;
+        console.log(res.results);
       })
   }
 }

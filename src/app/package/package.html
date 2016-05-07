@@ -15,6 +15,12 @@
           <a href="">{{package.tmpUser.email}}</a>
         </span>
       </div>
+
+      <div class="profile-left-section">
+        <span ng-repeat="version in package.tmpPgk.versions">
+          <a href="">{{version.version}}</a>, 
+        </span>
+      </div>
     </div>
   </div>
   
