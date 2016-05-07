@@ -1,16 +1,15 @@
-export function runBlock ($log, request, $state, $rootScope) {
+export function runBlock ($log, request, $state, $rootScope, $stateParams) {
   'ngInject';
   $log.debug('runBlock end');
 
   if (!$rootScope.user) {
+    $log.debug('here');
     request.getUser();
   }
 
-  $rootScope.$on("$stateChangeStart",
-    function(event, toState, toParams, fromState, fromParams) {
-      if (toState.authenticate && !request.getUser()) {
-        $state.go("signin");
-        event.preventDefault();
-      }
-    });
+  $rootScope.$watchCollection(function(){
+    return $stateParams;
+  }, function(){
+    $log.info("State params have been updated", $stateParams);
+  })
 }

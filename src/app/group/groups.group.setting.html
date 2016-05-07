@@ -1,35 +1,27 @@
-<div>
-  <form class="form-horizontal">
-    <fieldset>
+<div ng-init="group.setPostUrl();">
 
-      <!-- File Button --> 
+
+  <!-- File Button --> 
+  <form id="group-avatar-form" method="post" enctype="multipart/form-data" class="form-horizontal" action="http://acadweb1.salisbury.edu/~NT9736/upload.php?id=Group&table=Groups&column=name&callback=http://localhost:3000/#/groups/Group/setting">
+    <fieldset>
       <div class="form-group">
-        <label class="col-md-4 control-label" for="filebutton">Update avatar</label>
+        <label class="col-md-4 control-label" for="filebutton" >Update avatar</label>
         <div class="col-md-4">
-          <input id="filebutton" name="filebutton" class="input-file" type="file">
+          <input type="file" name="image"/>
         </div>
       </div>
-
-      <!-- Text input-->
+      <input class="form-group btn btn-primary" type="submit" value="Submit">
+    </fieldset>
+  </form>
+  <!-- Text input-->
+    <!-- <form class="form-horizontal">
       <div class="form-group">
         <label class="col-md-4 control-label" for="textinput">Description</label>  
         <div class="col-md-4">
-          <input id="textinput" name="textinput" type="text" placeholder="placeholder" class="form-control input-md">
+          <input id="textinput" name="textinput" type="text" placeholder="{{group.tmpGroup.description || 'Description here'}}" class="form-control input-md">
         </div>
       </div>
+    </form>
+    <a href="" class="btn btn-primary">Submit</a> -->
 
-      <!-- Text input-->
-      <!-- <div class="form-group">
-          <label class="col-md-4 control-label" for="textinput">Text Input</label>  
-          <div class="col-md-4">
-            <input id="textinput" name="textinput" type="text" placeholder="placeholder" class="form-control input-md">
-          </div>
-        </div>
-      -->
-      <span class="btn btn-default btn-file">
-        Invite people <input type="file">
-      </span>
-      <a href="" class="btn btn-primary">Submit</a>
-    </fieldset>
-  </form>
-</div>
+  </div>

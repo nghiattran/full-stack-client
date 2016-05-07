@@ -4,6 +4,7 @@ export function groupRouterConfig ($stateProvider) {
   $stateProvider
     .state('groups', {
       url: '/groups',
+      abstract: true,
       templateUrl: 'app/group/groups.html',
       controller: 'GroupController',
       controllerAs: 'group',
@@ -14,7 +15,7 @@ export function groupRouterConfig ($stateProvider) {
       templateUrl: 'app/group/groups.add.html'
     })
     .state('groups.group', {
-      url: '/:id',
+      url: '/:groupName',
       templateUrl: 'app/group/groups.group.html'
     })
     .state('groups.group.packages', {

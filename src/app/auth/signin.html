@@ -1,8 +1,8 @@
-<div class="auth-box">
+<div class="auth-box" ng-init="auth.startAppin()">
   <div class="auth-inner-box">
     <h3>Sign in</h3>
     <div class='row' id="login-button-group">
-      <a class="btn btn-social btn-google btn-block">
+      <!-- <a class="btn btn-social btn-google btn-block">
         <span class="fa fa-google"></span> Sign in with Twitter
       </a>
       <a class="btn btn-social btn-facebook btn-block">
@@ -10,6 +10,9 @@
       </a>
       <a class="btn btn-social btn-github btn-block">
         <span class="fa fa-github"></span> Sign in with Github
+      </a> -->
+      <a id="google-auth-btn-in" class="btn btn-social btn-google btn-block" data-theme="dark">
+        <span class="fa fa-google"></span> Sign up with Google
       </a>
     </div>
 

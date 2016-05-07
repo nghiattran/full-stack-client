@@ -31,4 +31,9 @@ class NavbarController {
     this.API.logout();
     this.$state.go('home');
   }
+
+  search(search) {
+    // console.log();
+    // this.request.get(url)
+  }
 }

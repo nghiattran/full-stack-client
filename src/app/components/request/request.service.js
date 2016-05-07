@@ -17,6 +17,7 @@ export class requestService {
   get(endpoint, params) {
     var req = {
       method: 'GET',
+      'cache-control': 'no-cache',
       url: this.apiHost + endpoint,
       headers: {
         Authorization: this.$cookies.get('token') || null
@@ -33,6 +34,7 @@ export class requestService {
     var config ={
       headers: {Authorization: this.$cookies.get('token') || null}
     }
+    console.log(payload);
     return this.$http.post(this.setUrl(endpoint), payload, config)
   }
 
@@ -47,26 +49,22 @@ export class requestService {
     var that = this;
     return this.post("api/user", user)
       .then(function (res) {
-        if (!('error' in res.data)) {
-          that.getUser();
-        }
-        return res.data;
+        that.signin(user)
       })
-      .catch(function (err) {
-        return err.data;
-      });
   }
 
   signin(user) {
     var that = this;
     return this.post("auth/local", user)
       .then(function (res) {
+        that.$cookies.put('token', res.data.token);
         if (!('error' in res.data)) {
           that.getUser();
         }
         return res.data;
       })
       .catch(function (err) {
+        console.log('err',err);
         return err.data;
       });
   }
@@ -83,33 +81,38 @@ export class requestService {
 
   logout() {
     this.$cookies.remove('token');
-    console.log(this.$rootScope.user);
-    if (this.$rootScope.user && this.$rootScope.user.provider === 'google') {
-      googleSignOut();
-    };
     this.$rootScope.user = null;
   }
 
   getUser() {
     var self = this;
-    if (!this.$cookies.get('token')) {
-      return ;
-    };
-
-    this.get('api/user/me')
+    return this.get('api/user/me')
       .then(function (res) {
+        console.log(self.$rootScope.user);
         self.$rootScope.user = res.results;
+        self.getGroups();
+        console.log(self.$rootScope.user);
       })
       .catch(function (err) {
-        console.log(err);
+        console.log('err', err);
         self.logout();
+      })
+  }
+
+  getGroups() {
+    var self = this;
+
+    if (!this.$rootScope.user) {
+      return getUser().then(function (res) {
+        return self.getGroups();
+      });
+    }
+    console.log(this.$rootScope.user);
+    return this.get('api/group/user/' + this.$rootScope.user.name)
+      .then(function (res) {
+        self.$rootScope.user.groups = res.results;
       })
   }
 
 }
 
-
-function googleSignOut() {
-  console.log('here');
-  gapi.auth.signOut();
-}

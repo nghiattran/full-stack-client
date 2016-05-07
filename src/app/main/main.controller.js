@@ -1,12 +1,14 @@
 export class MainController {
-  constructor ($timeout, webDevTec, toastr) {
+  constructor ($timeout, webDevTec, toastr, $http, $scope, $rootScope) {
     'ngInject';
 
     this.awesomeThings = [];
     this.classAnimation = '';
     this.creationDate = 1455574504555;
     this.toastr = toastr;
-
+    this.$http = $http;
+    this.$scope = $scope;
+    this.getImage();
     this.activate($timeout, webDevTec);
   }
 
@@ -25,8 +27,17 @@ export class MainController {
     });
   }
 
+  getImage() {
+    // this.$http.get('http://acadweb1.salisbury.edu/~NT9736/getImage.php?id=2000')
+    //   .then(function (res) {
+    //     document.getElementById("ItemPreview").src = "data:image/png;base64, " + res.data;
+    //   })
+  }
+
   showToastr() {
-    this.toastr.info('Fork <a href="https://github.com/Swiip/generator-gulp-angular" target="_blank"><b>generator-gulp-angular</b></a>');
-    this.classAnimation = '';
+    // console.log('here');
+    // console.log(this.toastr);
+    // this.toastr.options.preventDuplicates = false;
+    // this.toastr.warning('My name is Inigo Montoya. You killed my father, prepare to die!')
   }
 }

@@ -1,16 +1,16 @@
-<div class="group">
+<div class="group" ng-init="group.tmpGroup={}; group.getGroup()">
   <div class="group-intro">
     <div class="container">
-
       <div class="group-intro-box row">
         <div class="group-box">
-          <img class="group-logo" src="https://avatars3.githubusercontent.com/u/15514893?v=3&s=200">
+          <img class="group-logo" id="group-avatar" src="https://avatars3.githubusercontent.com/u/15514893?v=3&s=200">
         </div>
         <div class="group-info">
-          <h1>Awsome</h1>
-          <small>Description of Awsome</small>
+          <h1>{{group.tmpGroup.groupName}}</h1>
+          <small>{{group.tmpGroup.description}}</small>
         </div>
       </div>
+
     </div>
   </div>
   <div class="container">
@@ -19,43 +19,35 @@
         <i class="fa fa-folder" aria-hidden="true"></i>
         <a ui-sref="groups.group.packages">Packages</a>
       </div>
-      <div class="atab" ui-sref-active-eq="atab-active">
+      <!-- <div class="atab" ui-sref-active-eq="atab-active">
         <i class="fa fa-users" aria-hidden="true"></i>
         <a href="">Members</a>
-      </div>
-      <div class="atab" ui-sref-active-eq="atab-active">
+      </div> -->
+      <div class="atab" ui-sref-active-eq="atab-active" ng-if="group.tmpGroup.createdBy === group.$rootScope.user.name">
         <i class="fa fa-wrench" aria-hidden="true"></i>
         <a ui-sref="groups.group.setting">Settings</a>
       </div>
     </div>
 
     <div class="group-content">
-      <div class="col-md-9" ui-view="">
+      <div class="col-xs-9" ui-view="">
       </div>
-      <div class="col-md-3">
+      <div class="col-xs-3">
         <div class="box box-shadow">
           <div class="group-member-header">
             Members
           </div>
-          <div class="group-members">
+
+          <div class="group-members" ng-repeat="member in group.tmpGroup.members">
             <div class="group-members-avatar">
               <img src="https://avatars2.githubusercontent.com/u/13736109?v=3&s=80">
             </div>
             <div class="group-members-info">
-              <a href="">Nghia Tran</a>
-              <p>Owner</p>
+              <a ui-sref="profile({username:member.name})">{{member.name}}</a>
+              <p>{{member.description}}</p>
             </div>
           </div>
 
-          <div class="group-members">
-            <div class="group-members-avatar">
-              <img src="https://avatars3.githubusercontent.com/u/22681?v=3&s=80">
-            </div>
-            <div class="group-members-info">
-              <a href="">Kien Pham</a>
-              <p>Member</p>
-            </div>
-          </div>
         </div>
       </div> 
     </div> 

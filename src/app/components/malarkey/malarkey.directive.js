@@ -32,7 +32,7 @@ export function MalarkeyDirective(malarkey) {
 
     watcher = scope.$watch('vm.contributors', () => {
       angular.forEach(vm.contributors, (contributor) => {
-        typist.type(contributor.login).pause().delete();
+        typist.type(contributor).pause().delete();
       });
     });
 
@@ -60,9 +60,11 @@ class MalarkeyController {
   }
 
   getContributors(githubContributor) {
-    return githubContributor.getContributors(10).then((data) => {
-      this.contributors = data;
 
+    return githubContributor.getContributors(10).then((data) => {
+      console.log(data);
+      // this.contributors = data;
+      this.contributors = ['eating', 'sleeping', 'coding', 'dreaming', 'playing game', 'watching movies']
       return this.contributors;
     });
   }

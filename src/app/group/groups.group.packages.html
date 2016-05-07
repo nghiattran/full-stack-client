@@ -1,19 +1,18 @@
 <div>
-  <label>Awsome has 10 packages</label>
+  <label>{{group.tmpGroup.groupName}} has {{group.tmpGroup.pkgs.length}} package(s)</label>
 
   <div class="package">
-    <div class="package-name">
-      <a href="">generator-python-parse</a>
-      <p>1.2.9</p>
+    <div class="package-name" ng-repeat="pkg in group.tmpGroup.pkgs">
+      <a ui-sref="package({username: group.tmpGroup.groupName, pkgName:pkg.name})">{{pkg.name}}</a>
       <p>Public</p>
     </div>
   </div>
 
-  <div class="package">
+  <!-- <div class="package">
     <div class="package-name">
       <a href="">generator-simple-package</a>
       <p>6.2.9</p>
       <p>Private</p>
     </div>
-  </div>
+  </div> -->
 </div>
