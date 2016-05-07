@@ -43,11 +43,26 @@ export class ProfileController {
       })
       .then(function (groups) {
         self.tmpUser.groups = groups.results;
+        self.getGroupImage(groups.results)
+        console.log(groups.results);
         return self.request.get('api/package/' + username);
       })
       .then(function (pkgs) {
         self.tmpUser.pkgs = pkgs.results;
         console.log(pkgs);
       })
+  }
+
+  getGroupImage(groups) {
+    for (var i = 0; i < groups.length; i++) {
+      this.$http.get('http://acadweb1.salisbury.edu/~NT9736/getImage.php?table=Groups&column=name&id=' + groups[0].groupName)
+        .then(function (res) {
+          if (res.data) {
+            groups[0].image = "data:image/png;base64, " + res.data;
+          } else {
+            groups[0].image = 'http://www.gravatar.com/avatar/205e460b479e2e5b48aes07710c0ad50?d=mm';
+          }
+        })
+    };
   }
 }

@@ -29,7 +29,7 @@
       <div class="profile-left-section">
         <header>Groups</header>
         <div class="group-icons">
-          <a ui-sref="groups.group.packages({groupName: group.groupName})" title="{{group.groupName}}" ng-repeat="group in profile.tmpUser.groups"><img class="group-icon" src="https://avatars3.githubusercontent.com/u/9941730?v=3&s=84"></a>
+          <a ui-sref="groups.group.packages({groupName: group.groupName})" title="{{group.groupName}}" ng-repeat="group in profile.tmpUser.groups"><img class="group-icon" ng-src="{{group.image}}"></a>
         </div>
       </div>
 
