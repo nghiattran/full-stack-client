@@ -3,9 +3,10 @@
 
   <div class="package">
     <div class="package-name" ng-repeat="pkg in group.tmpGroup.pkgs">
-      <a ui-sref="package({username: group.tmpGroup.groupName, pkgName:pkg.name})">{{pkg.name}}</a>
-      <p>Public</p>
+      <a ui-sref="package({username: group.tmpGroup.groupName, pkgName:pkg.packageName})">{{pkg.packageName}}</a>
+      <p>{{pkg.packageProperty === '0' ? 'Public' : 'Private'}}</p>
     </div>
+
   </div>
 
   <!-- <div class="package">

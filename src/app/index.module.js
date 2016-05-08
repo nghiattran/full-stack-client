@@ -7,6 +7,7 @@ import { userRouterConfig } from './user/user.route';
 import { groupRouterConfig } from './group/group.route';
 import { profileRouterConfig } from './profile/profile.route';
 import { packageRouterConfig } from './package/package.route';
+import { reportRouterConfig } from './report/report.route';
 import { runBlock } from './index.run';
 import { MainController } from './main/main.controller';
 import { AuthController } from './auth/auth.controller';
@@ -14,7 +15,8 @@ import { UserController } from './user/user.controller';
 import { GroupController } from './group/group.controller';
 import { ProfileController } from './profile/profile.controller';
 import { PackageController } from './package/package.controller';
-import { ModalController } from '../app/components/modal/modal.controller';
+import { ReportController } from './report/report.controller';
+// import { ModalController } from '../app/components/modal/modal.controller';
 import { requestService } from '../app/components/request/request.service';
 import { GithubContributorService } from '../app/components/githubContributor/githubContributor.service';
 import { WebDevTecService } from '../app/components/webDevTec/webDevTec.service';
@@ -34,7 +36,8 @@ angular.module('gulpAngular', [
   'toastr', 
   'angular-jwt',
   'ui.bootstrap',
-  'btford.markdown'])
+  'btford.markdown',
+  'chart.js'])
   
 
   .constant('malarkey', malarkey)
@@ -46,6 +49,7 @@ angular.module('gulpAngular', [
   .config(groupRouterConfig)
   .config(packageRouterConfig)
   .config(profileRouterConfig)
+  .config(reportRouterConfig)
   .config(function (markdownConverterProvider) {
     console.log(markdownConverterProvider);
     markdownConverterProvider.config({
@@ -62,6 +66,7 @@ angular.module('gulpAngular', [
   .controller('GroupController', GroupController)
   .controller('ProfileController', ProfileController)
   .controller('PackageController', PackageController)
-  .controller('ModalController', ModalController)
+  .controller('ReportController', ReportController)
+  // .controller('ModalController', ModalController)
   .directive('acmeNavbar', NavbarDirective)
   .directive('acmeMalarkey', MalarkeyDirective);

@@ -36,6 +36,7 @@
 
             <li role="menuitem" ng-if="vm.$rootScope.user.provider === 'local'"><a ui-sref="setting">Setting</a></li>
             <li role="menuitem"><a ui-sref="profile({username: vm.$rootScope.user.name})">Profile</a></li>
+            <!-- <li role="menuitem" ng-if="vm.$rootScope.user.role === 'admin'"><a ui-sref="report">Report</a></li> -->
             <li class="divider"></li>
             <li><a ng-click="vm.logout()" href="" ng-if="vm.$rootScope.user">Logout</a></li>
           </ul>

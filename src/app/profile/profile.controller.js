@@ -43,13 +43,38 @@ export class ProfileController {
       })
       .then(function (groups) {
         self.tmpUser.groups = groups.results;
-        self.getGroupImages(groups.results)
+        self.getGroupImages(groups.results);
+        self.getGroupsPackages(groups.results);
         console.log(groups.results);
         return self.request.get('api/package/' + username);
       })
       .then(function (pkgs) {
         self.tmpUser.pkgs = pkgs.results;
         console.log(pkgs);
+      })
+  }
+
+  getGroupsPackages(groups) {
+    console.log(groups);
+    for (var i = 0; i < groups.length; i++) {
+      console.log(groups[i]);
+      this.getGroupPackage(groups[i]);
+    };
+  }
+
+  getGroupPackage(group) {
+    var self = this;
+    this.request.get('api/package/' + group.groupName)
+      .then(function (pkgs) {
+        if (!self.tmpUser.groupPkgs) {
+          self.tmpUser.groupPkgs = pkgs.results;
+        } else {
+          for (var i = 0; i < pkgs.results.length; i++) {
+            self.tmpUser.groupPkgs.push(pkgs.results[i]);
+          };
+        }
+        console.log(self.tmpUser.groupPkgs);
+        group.pkgs = pkgs.results;
       })
   }
 

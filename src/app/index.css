@@ -422,3 +422,8 @@ a, a:hover {
 .profile-image #file-input {
   visibility: hidden;
 }
+
+.report-container {
+  width: 60% !important;
+  margin: auto;
+}

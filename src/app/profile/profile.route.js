@@ -3,7 +3,7 @@ export function profileRouterConfig ($stateProvider) {
   
   $stateProvider
     .state('profile', {
-      url: '/:username',
+      url: '/profile/:username',
       templateUrl: 'app/profile/profile.user.html',
       controller: 'ProfileController',
       controllerAs: 'profile',

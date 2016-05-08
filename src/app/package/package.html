@@ -9,24 +9,65 @@
         <a ng-if="package.tmpUser.type === 0" ui-sref="profile({username: package.tmpUser.name})">{{package.tmpUser.name}}</a>
         /<a href="">{{package.pkgName}}</a></h4>
 
-      <div class="profile-left-section">
+      <div class="profile-left-section" ng-if="package.tmpUser.type === 0">
         <span>
           <i class="fa fa-envelope" aria-hidden="true"></i>
           <a href="">{{package.tmpUser.email}}</a>
         </span>
       </div>
+      <!-- {{package.tmpPgk}} -->
+      <div class="profile-left-section" ng-if="package.tmpPgk.viewers[0].packageProperty === '1'">
+        <label>Who can see this package</label><br>
+        <span ng-repeat="viewer in package.tmpPgk.viewers">
+          <a ui-sref="profile({username:viewer.figureName})"><img class="group-icon" ng-src="{{viewer.image}}" title="{{viewer.figureName}}"></a>
+        </span>
+        <br><br>
+        <button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#myModal">Add</button>
+      </div>
 
       <div class="profile-left-section">
+        <label>Versions</label><br>
         <span ng-repeat="version in package.tmpPgk.versions">
-          <a href="">{{version.version}}</a>, 
+          <a href="{{'https://s3.amazonaws.com/nghiattran/' + package.pkgName + '-' + version.version + '.tgz'}}">{{version.version}}</a>
         </span>
       </div>
     </div>
   </div>
   
   <div class="col-md-9">
+
     <div ng-init="package.tmpPgk ={}" btf-markdown="package.tmpPgk.markdown">
     </div>
+
   </div>
 
+
+
+</div>
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-sm">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Grant permission</h4>
+      </div>
+      <form ng-submit="package.grantPermission(package.tmpPermissionForm)" ng-init="package.tmpPermissionForm = {};">
+        <div class="modal-body">
+          <div class="input-group" style="margin: auto">
+            <input type="text" class="form-control" aria-label="..." ng-model="package.tmpPermissionForm.user">
+          </div>
+          
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Grant</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </form>
+    </div>
+
+  </div>
 </div>

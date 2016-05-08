@@ -9,7 +9,6 @@
           <img id="avatar" align="middle" class="profile-image">
           <input id="file-input" type="file" name="image" id="fileToUpload" onchange="javascript:this.form.submit();" ng-disabled="profile.tmpUser.name !== profile.$rootScope.user.name"/>
         </label>
-
       </form>
 
       <!-- <div ng-bind-html="profile.form"></div> -->
@@ -50,7 +49,7 @@
                   <span><i class="fa fa-folder-open" aria-hidden="true"></i></span>
                 </div>
                 <div class="col-xs-10">
-                  <a ui-sref="package({username: profile.tmpUser.name, pkgName: pkg.packageName})">{{pkg.packageName}}</a>
+                  <a ui-sref="package({username: profile.tmpUser.name, pkgName: pkg.packageName})">{{pkg.packageName}}</a><span>  {{pkg.packageProperty === '0' ? 'Public' : 'Private'}}</span>
                   <p>{{pkg.description}}</p>
                 </div>
               </div>
@@ -66,19 +65,26 @@
           <tr>
             <th>Group Packages <a ui-sref="groups.add"><i class="fa fa-plus" aria-hidden="true"></i></a></th>
           </tr>
-          <!-- <tr>
-            <td>
-              <div>
-                <div class="col-xs-2">
-                  <span><i class="fa fa-folder-open" aria-hidden="true"></i></span>
-                </div>
-                <div class="col-xs-10">
-                  <a href="">python-parse</a>
-                  <p>description</p>
-                </div>
-              </div>
-            </td>
-          </tr> -->
+          <div>
+            <!-- {{tmpGroup}} -->
+            <!-- {{profile.tmpUser.groups[$index]}} -->
+            <!-- <div ng-repeat="pkg in profile.group.pkgs track by $index1"> -->
+            <!-- {{tmpGroup}} -->
+              <tr ng-repeat="pkg in profile.tmpUser.groupPkgs">
+                <td>
+                  <div>
+                    <div class="col-xs-2">
+                      <span><i class="fa fa-folder-open" aria-hidden="true"></i></span>
+                    </div>
+                    <div class="col-xs-10">
+                      <a ui-sref="groups.group.packages({groupName: pkg.ownerName})">{{pkg.ownerName}}</a>/<a ui-sref="package({username: pkg.ownerName, pkgName: pkg.packageName})">{{pkg.packageName}}</a><span>  {{pkg.packageProperty === '0' ? 'Public' : 'Private'}}</span>
+                      <p>{{pkg.description}}</p>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            <!-- </div> -->
+          </div>
         </table>
       </div>
     </div>
