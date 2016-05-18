@@ -104,4 +104,18 @@ export class GroupController {
         return err;
       });
   }
+
+  kick(form) {
+    form.group = this.tmpGroup.groupName;
+    var self = this;
+    this.request.post('api/group/kick', form)
+      .then(function (res) {
+        form = undefined;
+        self.getGroup();
+      })
+      .catch(function (err) {
+        self.getGroup();
+        return err;
+      });
+  }
 }

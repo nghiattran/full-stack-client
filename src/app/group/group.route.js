@@ -22,6 +22,10 @@ export function groupRouterConfig ($stateProvider) {
       url: '/packages',
       templateUrl: 'app/group/groups.group.packages.html'
     })
+    .state('groups.group.kick', {
+      url: '/kick',
+      templateUrl: 'app/group/groups.group.kick.html'
+    })
     .state('groups.group.setting', {
       url: '/setting',
       templateUrl: 'app/group/groups.group.setting.html'

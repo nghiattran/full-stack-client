@@ -28,7 +28,7 @@
       <div class="profile-left-section">
         <label>Versions</label><br>
         <span ng-repeat="version in package.tmpPgk.versions">
-          <a href="{{'https://s3.amazonaws.com/nghiattran/' + package.pkgName + '-' + version.version + '.tgz'}}">{{version.version}}</a>
+          <a href="{{'https://s3.amazonaws.com/nghiattran/' + package.pkgName + '-' + version.version + '.tgz'}}">{{version.version}}, </a>
         </span>
       </div>
     </div>
@@ -36,8 +36,8 @@
   
   <div class="col-md-9">
 
-    <div ng-init="package.tmpPgk ={}" btf-markdown="package.tmpPgk.markdown">
-    </div>
+   
+    <p ng-init="package.tmpPgk ={}" markdown-to-html="package.tmpPgk.markdown"></p>
 
   </div>
 

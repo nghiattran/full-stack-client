@@ -36,7 +36,7 @@ angular.module('gulpAngular', [
   'toastr', 
   'angular-jwt',
   'ui.bootstrap',
-  'btford.markdown',
+  'ng-showdown',
   'chart.js'])
   
 
@@ -50,12 +50,12 @@ angular.module('gulpAngular', [
   .config(packageRouterConfig)
   .config(profileRouterConfig)
   .config(reportRouterConfig)
-  .config(function (markdownConverterProvider) {
-    console.log(markdownConverterProvider);
-    markdownConverterProvider.config({
-      extensions: ['github']
-    });
-  })
+  // .config(function (markdownConverterProvider) {
+  //   console.log('markdownConverterProvider', markdownConverterProvider);
+  //   markdownConverterProvider.config({
+  //     extensions: ['github']
+  //   });
+  // })
   .run(runBlock)
   .service('request', requestService)
   .service('githubContributor', GithubContributorService)

@@ -1,0 +1,36 @@
+<form id="group-avatar-form" method="post" enctype="multipart/form-data" class="form-horizontal" ng-submit="group.kick(group.tmpKickForm)" ng-init="group.tmpKickForm = {}">
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="textinput">Username:</label>  
+    <div class="col-md-4">
+      <input id="textinput" name="textinput" type="text" class="form-control input-md" ng-model="group.tmpKickForm.user">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-md-4 control-label"></label>
+
+
+    <div class="col-md-4">
+      <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+        Submit
+      </button>
+    </div>
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Kick user from {{group.tmpGroup.groupName}}</h4>
+        </div>
+        <div class="modal-body">
+          Are you sure you want to kick {{group.tmpKickForm.user}} from {{group.tmpGroup.groupName}}?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <input class="btn btn-danger" type="submit" value="Submit">
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

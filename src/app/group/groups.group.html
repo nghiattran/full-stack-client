@@ -31,6 +31,10 @@
         <i class="fa fa-sign-language" aria-hidden="true"></i>
         <a ui-sref="groups.group.invite">Invite</a>
       </div>
+      <div class="atab" ui-sref-active-eq="atab-active" ng-if="group.tmpGroup.createdBy === group.$rootScope.user.name">
+        <i class="fa fa-thumbs-down" aria-hidden="true"></i>
+        <a ui-sref="groups.group.kick">Kick</a>
+      </div>
     </div>
 
     <div class="group-content">

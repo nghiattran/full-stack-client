@@ -29,18 +29,24 @@ export class PackageController {
             .replace('{{username}}', this.username)
             .replace('{{pkgName}}', this.pkgName)
     var self = this;
-    this.$http.get(url + file)
+    console.log('github', url + 'README.md');
+    this.$http.get(url + 'README.md')
       .then(function (res) {
         self.tmpPgk.markdown = res.data;
+        console.log(self.tmpPgk.markdown);
       })
       .catch(function (err) {
         return self.$http.get(url + 'readme.md')
           .then(function (res) {
             self.tmpPgk = {};
             self.tmpPgk.markdown = res.data;
+            console.log(self.tmpPgk.markdown);
+            console.log('readme.md');
           })
           .catch(function (err) {
+            console.log('github', url + 'readme.md');
             self.tmpPgk.markdown = '### This package does not have a README file';
+            console.log(self.tmpPgk.markdown);
           })
       })
   }
